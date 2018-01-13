@@ -6,19 +6,19 @@ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-con
 sudo -u postgres psql
 
 - paste this code in postgres console:
-CREATE DATABASE django_project;
-CREATE USER username WITH PASSWORD 'xxxx';
-ALTER ROLE username SET client_encoding TO 'utf8';
-ALTER ROLE username SET default_transaction_isolation TO 'read committed';
-ALTER ROLE username SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE django_project TO username;
+CREATE DATABASE devdjango;
+CREATE USER devdjango WITH PASSWORD 'xxxx';
+ALTER ROLE devdjango SET client_encoding TO 'utf8';
+ALTER ROLE devdjango SET default_transaction_isolation TO 'read committed';
+ALTER ROLE usernadevdjangome SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE devdjango TO devdjango;
 \q
 
 pip3 install django gunicorn python3-psycopg2
 django-admin.py startproject devdjango
 nano devdjango/settings.py
 
-- add your Amazon Lightsail IP to the ALLOWED_HOSTS variable, example:
+- add your IP to the ALLOWED_HOSTS variable:
 
 ALLOWED_HOSTS = ['*']
 
@@ -46,10 +46,9 @@ python3 manage.py createsuperuser
 python3 manage.py collectstatic
 
 sudo ufw allow 8001
-./manage.py runserver 0.0.0.0:8001
+python3 manage.py runserver 0.0.0.0:8001
 - ctrl + c
 
-cd ~/devdjango
 gunicorn --bind 0.0.0.0:8001 devdjango.wsgi:application
 - ctrl + c
 
