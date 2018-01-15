@@ -2,7 +2,8 @@ install django, gunicorn, nignx on ubuntu 16.04
 
 #### setting ####
 $ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
-$ sudo pip3 install django gunicorn python3-psycopg2
+$ sudo apt-get install python3-django
+$ sudo pip3 install gunicorn python3-psycopg2
 
 $ django-admin --version
 > 1.9.6
